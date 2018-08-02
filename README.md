@@ -32,3 +32,27 @@ Go ahead and gather as many points as you can! 👀
 8. After you guessed 10 moview the game is over. You can see your total points on the sreen. 🏆
 
 9. Go ahead and **test your knowledge again**. 🎯
+
+
+### What did I learn? 👩🏻‍💻
+
+- Since it was my first very own project I learned how to **build up an app from scratch**.
+
+- How to **randomly change the background color** of the view.
+
+- How to **add sound effect** when buttons are tapped.
+
+- Created **my own function** which gives you back 10 random elements from an array.
+
+- Although it is fairly a simple application I still did **lots of lots of research** about different topics where I needed deeper knowledge to solve problems. 
+
+- I learned **how to search**, which sources are useful in general and how to **decide quickly** if a code snippet is relevant for my project. 
+
++ Bonus knowledge: Now I know how to write down dozens of movies only with emojis. (Of course this is also quite important...)🎉
+
+
+
+
+
+
+
