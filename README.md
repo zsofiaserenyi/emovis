@@ -46,7 +46,7 @@ Go ahead and gather as many points as you can! 👀
 
 7. If you don't have a clue you can click on the skip button which will bring you right to the next movie. But your reward will be 0 point. 
 
-8. After you guessed 10 moview the game is over. You can see your total points on the sreen. 🏆
+8. After you guessed 10 movies the game is over. You can see your total points on the sreen. 🏆
 
 9. Go ahead and **test your knowledge again**. 🎯
 
