@@ -15,13 +15,13 @@ Go ahead and gather as many points as you can! 👀
 
 *Well it is pretty easy just follow these steps:*
 
-1. Click on the "Start Adventure button" 🚀
+1. Click on the "Start Adventure button". 🚀
 
-2. Guess your first movie 
+2. Guess your first movie. 
 
-3. Type in your answer (be careful don't use underscore: "_")
+3. Type in your answer (be careful don't use underscore: "_").
 
-4. Click on the return/ check button or basically anywhere on the sreen
+4. Click on the return/ check button or basically anywhere on the sreen.
 
 5. The background turns to green and you will hear cheering sound effect if your answer is correct. You already earned **+10 points**. (Don't worry if you did't get it, the right answer will be shown!)
 
