@@ -62,17 +62,17 @@ Go ahead and gather as many points as you can! 👀
 ![](Images/Look4.png)
 
 
-*This is how the app looks like when your answer is correct. 👑*
+*This is how the app looks like when your answer is correct.* 👑
 
 ![](Images/Look2.png)
 
 
-*This is how the app looks like when your answer is NOT correct. 😿*
+*This is how the app looks like when your answer is NOT correct.* 😿
 
 ![](Images/Look3.png)
 
 
-*And this is how to play like an expert. 💃*
+*And this is how to play like an expert.* 💃
 
 ![](Images/Look5.png)
 
