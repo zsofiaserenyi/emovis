@@ -1,6 +1,6 @@
 # Emovis 🎬
 
-### Summery
+### Summary
 
 Hi there! 👋
 
