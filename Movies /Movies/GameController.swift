@@ -46,20 +46,11 @@ class GameController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        getRandomMovie()
+        setViewForBasic()
+        startOverButtonIsHidden(true)
     
-        let firstRandomMovieNumber = random(tenKeys.count)
-        emojiLabel.text = tenKeys[firstRandomMovieNumber] as? String
-        tenKeys.remove(at: firstRandomMovieNumber)
-        userAnswer.placeholder = "Type in your answer"
-        
-        
-        responseLabel.text = nil
-        answerLabel.text = nil
-        nextButtonLabel.setTitle("Skip", for: .normal)
-        startOverButton.isEnabled = false
-        startOverButton.setTitle(nil, for: .normal)
-        
-        userAnswer.autocorrectionType = .no
         self.hideKeyboard()
     }
     
@@ -74,33 +65,8 @@ class GameController: UIViewController, UITextFieldDelegate {
     
     @IBAction func check() {
         self.view.endEditing(true)
-        nextButtonLabel.setTitle("Next", for: .normal)
-        
-        checkButton.setTitle(nil, for: .normal)
-        
-        guard let currentMovie = emojiLabel.text else {
-            return
-        }
-        
-        guard let userResponse = userAnswer.text else {
-            return
-        }
-        
-        let movie = movies[currentMovie]
-        answerLabel.text = movie
-        
-        if movie?.uppercased() == userResponse.uppercased() {
-            responseLabel.text = "Correct ✔️"
-            answerLabel.text = "+10"
-            userPointCounter += 10
-            showAnswerButton.isEnabled = false
-            view.backgroundColor = goodAnswerColor
-            soundProvider.playSoundEffect(for: "goodAnswer")
-        } else {
-            responseLabel.text = "Wrong ✖️"
-            view.backgroundColor = wrongAnswerColor
-            soundProvider.playSoundEffect(for: "wrongAnswer")
-        }
+        setButtonLabelsAfterAnswer()
+        setViewAfterUserAnswer()
     }
     
     
@@ -108,13 +74,9 @@ class GameController: UIViewController, UITextFieldDelegate {
     
     @IBAction func showAnswer() {
         showAnswerButton.isEnabled = false
-        nextButtonLabel.setTitle("Next", for: .normal)
-        checkButton.setTitle(nil, for: .normal)
+        setButtonLabelsAfterAnswer()
         
-        guard let currentMovie = emojiLabel.text else {
-            return
-        }
-        
+        guard let currentMovie = emojiLabel.text else { return }
         let movie = movies[currentMovie]
         answerLabel.text = movie
         
@@ -126,16 +88,13 @@ class GameController: UIViewController, UITextFieldDelegate {
     
     @IBAction func nextMovie() {
         view.backgroundColor = colorProvider.randomColor()
-        userAnswer.backgroundColor = .white
-        responseLabel.text = nil
-        userAnswer.text = nil
-        nextButtonLabel.setTitle("Skip", for: .normal)
+
+        setViewForBasic()
+        
         checkButton.setTitle("Check", for: .normal)
         showAnswerButton.isEnabled = true
         
-        let randomMovieNumber = random(tenKeys.count)
-        emojiLabel.text = tenKeys[randomMovieNumber] as? String
-        tenKeys.remove(at: randomMovieNumber)
+        getRandomMovie()
         
         let randomTextNumber = random(text.count)
         textLabel.text = text[randomTextNumber]
@@ -143,26 +102,7 @@ class GameController: UIViewController, UITextFieldDelegate {
         answerLabel.text = nil
         
         if tenKeys.count == 0 {
-            textLabel.text = nil
-            emojiLabel.text = nil
-            
-            emojiLabel.text = "Your result: \(userPointCounter)/100"
-            emojiLabel.textColor = .white
-            
-            if userPointCounter <= 50 {
-                soundProvider.playSoundEffect(for: "pointUnder50")
-            } else {
-                soundProvider.playSoundEffect(for: "pointOver50")
-            }
-        
-            checkButton.setTitle(nil, for: .normal)
-            textLabel.text = "Game Over"
-            userAnswer.removeFromSuperview()
-            nextButton.isEnabled = false
-            nextButton.setTitle(nil, for: .normal)
-            showAnswerButton.setTitle(nil, for: .normal)
-            
-            startOverButtonAppear()
+            setViewForGameOver()
         }
     }
     
@@ -183,13 +123,76 @@ class GameController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func startOverButtonAppear() {
-        startOverButton.isEnabled = true
-        startOverButton.setTitle("Start Over", for: .normal)
+    func getRandomMovie() {
+        let randomMovieNumber = random(tenKeys.count)
+        emojiLabel.text = tenKeys[randomMovieNumber] as? String
+        tenKeys.remove(at: randomMovieNumber)
+    }
+    
+    func setViewAfterUserAnswer() {
+        guard let currentMovie = emojiLabel.text else { return }
+        guard let userResponse = userAnswer.text else { return }
+        let movie = movies[currentMovie]
+        answerLabel.text = movie
+        
+        if movie?.uppercased() == userResponse.uppercased() {
+            responseLabel.text = "Correct ✔️"
+            answerLabel.text = "+10"
+            userPointCounter += 10
+            showAnswerButton.isEnabled = false
+            view.backgroundColor = goodAnswerColor
+            soundProvider.playSoundEffect(for: "goodAnswer")
+        } else {
+            responseLabel.text = "Wrong ✖️"
+            view.backgroundColor = wrongAnswerColor
+            soundProvider.playSoundEffect(for: "wrongAnswer")
+        }
+    }
+    
+    func setButtonLabelsAfterAnswer() {
+        nextButtonLabel.setTitle("Next", for: .normal)
+        checkButton.setTitle(nil, for: .normal)
+    }
+    
+    func startOverButtonIsHidden(_ bool: Bool) {
+        startOverButton.isEnabled != bool
+        if bool == true {
+            startOverButton.setTitle(nil, for: .normal)
+        } else {
+            startOverButton.setTitle("Start Over", for: .normal)
+        }
+    }
+    
+    func setViewForBasic() {
+        responseLabel.text = nil
+        userAnswer.text = nil
+        answerLabel.text = nil
+        nextButtonLabel.setTitle("Skip", for: .normal)
+    }
+    
+    func setViewForGameOver() {
+        textLabel.text = nil
+        emojiLabel.text = nil
+        
+        emojiLabel.text = "Your result: \(userPointCounter)/100"
+        emojiLabel.textColor = .white
+        
+        if userPointCounter <= 50 {
+            soundProvider.playSoundEffect(for: "pointUnder50")
+        } else {
+            soundProvider.playSoundEffect(for: "pointOver50")
+        }
+        
+        checkButton.setTitle(nil, for: .normal)
+        textLabel.text = "Game Over"
+        userAnswer.removeFromSuperview()
+        nextButton.isEnabled = false
+        nextButton.setTitle(nil, for: .normal)
+        showAnswerButton.setTitle(nil, for: .normal)
+        
+        startOverButtonIsHidden(false)
     }
 }
-
-
 
 
 extension UIViewController {
